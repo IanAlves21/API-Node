@@ -47,7 +47,7 @@ async function updateUser(request, response) {
             response.status(error.statusCode || 500).send(error);
         })
         .then(result => {
-            return response.status(200).send(result);
+            return response.status(200).send({message: result ? "success" : "error"});
         });
 }
 
@@ -60,7 +60,7 @@ async function deleteUser(request, response) {
             response.status(error.statusCode || 500).send(error);
         })
         .then(result => {
-            return response.status(200).send(result);
+            return response.status(200).send({message: result === 1 ? "success" : "error"});
         });
 }
 
