@@ -118,4 +118,4 @@ dist
 .pnp.*
 
 # JavaScript version used
-.jshintrc
+# .jshintrc
