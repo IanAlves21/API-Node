@@ -1,57 +1,66 @@
-const user = require('../services/user');
+const User = require('../services/user');
 
 async function getAllUsers(request, response) {
-    return await user
+    return await User
         .getAllUsers()
         .catch(error => {
             response.status(error.statusCode || 500).send(error);
         })
-        .then(q => {
-            return response.status(200).send(q);
+        .then(result => {
+            return response.status(200).send(result);
         });
 }
 
 async function getUser(request, response) {
-    return await user
-        .getUser(request.params.id)
+    let id = request.params.id;
+
+    return await User
+        .getUser(id)
         .catch(error => {
             response.status(error.statusCode || 500).send(error);
         })
-        .then(q => {
-            return response.status(200).send(q);
+        .then(result => {
+            return response.status(200).send(result);
         });
 }
 
 async function setUser(request, response) {
-    return await user
-        .setUser(request.body)
+    let user = request.body;
+
+    return await User
+        .setUser(user)
         .catch(error => {
             response.status(error.statusCode || 500).send(error);
         })
-        .then(q => {
-            return response.status(200).send('Ok');
+        .then(result => {
+            return response.status(200).send(result);
         });
 }
 
 async function updateUser(request, response) {
-    return await user
-        .updateUser(request.params.id, request.body)
+    let id = request.params.id;
+    let user = request.body;
+
+    return await User
+        .updateUser(id, user)
         .catch(error => {
             response.status(error.statusCode || 500).send(error);
         })
-        .then(q => {
-            return response.status(200).send('Ok');
+        .then(result => {
+            return response.status(200).send(result);
         });
 }
 
 async function deleteUser(request, response) {
-    return await user
-        .deleteUser(request.params.id)
+    let id = request.params.id;
+
+    return await User
+        .deleteUser(id)
         .catch(error => {
             response.status(error.statusCode || 500).send(error);
         })
-        .then(q => {
-            return response.status(200).send('Ok');
+        .then(result => {
+            return response.status(200).send(result);
         });
 }
 

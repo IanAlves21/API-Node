@@ -12,12 +12,12 @@ async function getAllUsers() {
     return await User.findAll();
 }
 
-async function setUser(p) {
-    await User.create(p);
+async function setUser(user) {
+    return await User.create(user);
 }
 
 async function updateUser(id, user) {
-    await User.update(user, { 
+    return await User.update(user, { 
         where: { 
             id: id 
         } 
@@ -25,7 +25,7 @@ async function updateUser(id, user) {
 }
 
 async function deleteUser(id) {
-    await User.destroy({ 
+    return await User.destroy({ 
         where: { 
             id: id 
         } 

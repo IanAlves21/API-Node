@@ -1,12 +1,12 @@
-const user = require('../database_queries/user');
+const User = require('../database_queries/User');
 
 async function getAllUsers() {
-    var users = await user.getAllUsers();
+    var users = await User.getAllUsers();
 
     if (!users) {
         return {
-            statusCode: 400,
-            msg: 'Erro ao buscar os Usuários'
+            status: 400,
+            message: 'Erro ao buscar os Usuários'
         };
     }
 
@@ -14,54 +14,55 @@ async function getAllUsers() {
 }
 
 async function getUser(id) {
-    var usr = await user.getUser(id);
+    var user = await User.getUser(id);
 
-    if (!usr) {
+    if (!user) {
         return {
-            statusCode: 400,
-            msg: 'Erro: usuario não encontrado'
+            status: 400,
+            message: 'Erro: usuario não encontrado'
         };
     }
 
-    return usr;
+    return user;
 }
 
-async function setUser(p) {
-    var usr = await user.setUser(p);
+async function setUser(usr) {
+    var user = await User.setUser(usr);
 
-    if (!usr) {
+    if (!user) {
         return {
-            statusCode: 400,
-            msg: 'Erro: ao inserir a user ' + p.nome
+            status: 400,
+            message: 'Erro: ao inserir a user ' + usr.nome
         };
     }
 
-    return usr;
+    return user;
 }
 
-async function updateUser(id, p) {
-    var usr = await user.updateUser(id, p);
+async function updateUser(id, usr) {
+    var user = await User.updateUser(id, usr);
 
-    if (!usr) {
+    if (!user) {
         return {
-            statusCode: 400,
-            msg: 'Erro: user não encontrada'
+            status: 400,
+            message: 'Erro: User não encontrada'
         };
     }
 
-    return usr;
+    return user;
 }
 
 async function deleteUser(id) {
-    var usr = await user.deleteUser(id);
+    var user = await User.deleteUser(id);
 
-    if (!usr) {
+    if (!user) {
         return {
-            statusCode: 400,
-            msg: 'Erro: user não encontrada'
+            status: 400,
+            message: 'Erro: User não encontrada'
         };
     }
 
-    return usr;
+    return user;
 }
+
 module.exports = { getAllUsers, getUser, setUser, updateUser, deleteUser };
