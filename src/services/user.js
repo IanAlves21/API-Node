@@ -1,4 +1,4 @@
-const user = require('../repository/user');
+const user = require('../database_queries/user');
 
 async function getAll() {
     var users = await user.getAll();

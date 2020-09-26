@@ -4,6 +4,7 @@ async function getAll(req, res) {
     return await user
         .getAll()
         .catch(err => {
+            console.log(err.message)
             res.status(err.statusCode || 500).send(err);
         })
         .then(q => {
