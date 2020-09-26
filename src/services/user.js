@@ -1,7 +1,7 @@
 const user = require('../database_queries/user');
 
-async function getAll() {
-    var users = await user.getAll();
+async function getAllUsers() {
+    var users = await user.getAllUsers();
 
     if (!users) {
         return {
@@ -13,8 +13,8 @@ async function getAll() {
     return users;
 }
 
-async function get(id) {
-    var usr = await user.get(id);
+async function getUser(id) {
+    var usr = await user.getUser(id);
 
     if (!usr) {
         return {
@@ -26,8 +26,8 @@ async function get(id) {
     return usr;
 }
 
-async function post(p) {
-    var usr = await user.post(p);
+async function setUser(p) {
+    var usr = await user.setUser(p);
 
     if (!usr) {
         return {
@@ -39,8 +39,8 @@ async function post(p) {
     return usr;
 }
 
-async function put(p) {
-    var usr = await user.put(p);
+async function updateUser(id, p) {
+    var usr = await user.updateUser(id, p);
 
     if (!usr) {
         return {
@@ -52,8 +52,8 @@ async function put(p) {
     return usr;
 }
 
-async function del(id) {
-    var usr = await user.del(id);
+async function deleteUser(id) {
+    var usr = await user.deleteUser(id);
 
     if (!usr) {
         return {
@@ -64,4 +64,4 @@ async function del(id) {
 
     return usr;
 }
-module.exports = { getAll, get, post, put, del };
+module.exports = { getAllUsers, getUser, setUser, updateUser, deleteUser };

@@ -1,58 +1,58 @@
 const user = require('../services/user');
 
-async function getAll(req, res) {
+async function getAllUsers(request, response) {
     return await user
-        .getAll()
-        .catch(err => {
-            res.status(err.statusCode || 500).send(err);
+        .getAllUsers()
+        .catch(error => {
+            response.status(error.statusCode || 500).send(error);
         })
         .then(q => {
-            return res.status(200).send(q);
+            return response.status(200).send(q);
         });
 }
 
-async function get(req, res) {
+async function getUser(request, response) {
     return await user
-        .get(req.params.id)
-        .catch(err => {
-            res.status(err.statusCode || 500).send(err);
+        .getUser(request.params.id)
+        .catch(error => {
+            response.status(error.statusCode || 500).send(error);
         })
         .then(q => {
-            return res.status(200).send(q);
+            return response.status(200).send(q);
         });
 }
 
-async function post(req, res) {
+async function setUser(request, response) {
     return await user
-        .post(req.body.user)
-        .catch(err => {
-            res.status(err.statusCode || 500).send(err);
+        .setUser(request.body)
+        .catch(error => {
+            response.status(error.statusCode || 500).send(error);
         })
         .then(q => {
-            return res.status(200).send('Ok');
+            return response.status(200).send('Ok');
         });
 }
 
-async function put(req, res) {
+async function updateUser(request, response) {
     return await user
-        .put(req.body.user)
-        .catch(err => {
-            res.status(err.statusCode || 500).send(err);
+        .updateUser(request.params.id, request.body)
+        .catch(error => {
+            response.status(error.statusCode || 500).send(error);
         })
         .then(q => {
-            return res.status(200).send('Ok');
+            return response.status(200).send('Ok');
         });
 }
 
-async function del(req, res) {
+async function deleteUser(request, response) {
     return await user
-        .del(req.params.id)
-        .catch(err => {
-            res.status(err.statusCode || 500).send(err);
+        .deleteUser(request.params.id)
+        .catch(error => {
+            response.status(error.statusCode || 500).send(error);
         })
         .then(q => {
-            return res.status(200).send('Ok');
+            return response.status(200).send('Ok');
         });
 }
 
-module.exports = { getAll, get, post, put, del };
+module.exports = { getAllUsers, getUser, setUser, updateUser, deleteUser };

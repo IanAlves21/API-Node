@@ -1,29 +1,35 @@
-const user = require('../models/user');
-const Sequelize = require('sequelize');
-const mysqlConnection = require('../config/database');
+const User = require('../models/user');
 
-async function get(id) {
-    return await user.user(mysqlConnection, Sequelize).findOne({
+async function getUser(id) {
+    return await User.findOne({
         where: {
             id: id
         }
     });
 }
 
-async function getAll() {
-    return await user.user(mysqlConnection, Sequelize).findAll();
+async function getAllUsers() {
+    return await User.findAll();
 }
 
-async function post(p) {
-    await user.user(mysqlConnection, Sequelize).create(p);
+async function setUser(p) {
+    await User.create(p);
 }
 
-async function put(p) {
-    await user.user(mysqlConnection, Sequelize).update(p, { where: { id: p.id } });
+async function updateUser(id, user) {
+    await User.update(user, { 
+        where: { 
+            id: id 
+        } 
+    });
 }
 
-async function del(id) {
-    await user.user(mysqlConnection, Sequelize).destroy({ where: { id: id } });
+async function deleteUser(id) {
+    await User.destroy({ 
+        where: { 
+            id: id 
+        } 
+    });
 }
 
-module.exports = { get, getAll, post, put, del };
+module.exports = { getUser, getAllUsers, setUser, updateUser, deleteUser };
